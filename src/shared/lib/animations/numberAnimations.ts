@@ -40,7 +40,7 @@ export const createYearAnimation = (
 ): gsap.core.Timeline | null => {
 	if (!startElement || !endElement) return null
 
-	const {duration = 1.5, ease = 'power2.out', onComplete} = options
+	const {duration = 1.6, ease = 'power2.out', onComplete} = options
 	const timeline = gsap.timeline({onComplete})
 
 	if (fromYears.start !== toYears.start) {
