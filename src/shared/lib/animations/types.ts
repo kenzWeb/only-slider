@@ -1,20 +1,20 @@
 export interface AnimationConfig {
-  duration?: number;
-  ease?: string;
-  delay?: number;
+	duration?: number
+	ease?: string
+	delay?: number
 }
 
 export interface NumberAnimationConfig extends AnimationConfig {
-  onComplete?: () => void;
-  onUpdate?: (progress: number) => void;
+	onComplete?: () => void
+	onUpdate?: (progress: number) => void
 }
 
 export interface CircleAnimationConfig extends AnimationConfig {
-  radius?: number;
-  center?: { x: number; y: number };
+	radius?: number
+	center?: {x: number; y: number}
 }
 
 export interface SliderAnimationConfig extends AnimationConfig {
-  direction?: 'left' | 'right' | 'up' | 'down';
-  distance?: number;
+	direction?: 'left' | 'right' | 'up' | 'down'
+	distance?: number
 }
