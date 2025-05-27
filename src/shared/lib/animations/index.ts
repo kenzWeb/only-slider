@@ -1,8 +1,6 @@
 export * from './numberAnimations'
 export * from './circleAnimations'
 export * from './sliderAnimations'
-export * from './constants'
-export * from './types'
 
 export interface AnimationOptions {
 	duration?: number

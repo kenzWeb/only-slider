@@ -17,29 +17,31 @@ export const AnimatedYearsDisplay: React.FC<AnimatedYearsDisplayProps> = ({
 	const [currentEndYear, setCurrentEndYear] = useState(endYear)
 	const startYearRef = useRef<HTMLSpanElement>(null)
 	const endYearRef = useRef<HTMLSpanElement>(null)
-	const {animateYears} = useAnimations()
+	const {animateYears, cleanup} = useAnimations()
 
 	useEffect(() => {
 		if (startYear === currentStartYear && endYear === currentEndYear) return
 
+		
 		animateYears(
 			startYearRef.current,
 			endYearRef.current,
 			{start: currentStartYear, end: currentEndYear},
 			{start: startYear, end: endYear},
-			{
-				onComplete: () => {
-					setCurrentStartYear(startYear)
-					setCurrentEndYear(endYear)
-				}
-			}
+			() => {
+				setCurrentStartYear(startYear)
+				setCurrentEndYear(endYear)
+			},
 		)
+
+		return cleanup
 	}, [
 		startYear,
 		endYear,
 		currentStartYear,
 		currentEndYear,
 		animateYears,
+		cleanup,
 	])
 
 	return (

@@ -40,7 +40,7 @@ export const createYearAnimation = (
 ): gsap.core.Timeline | null => {
 	if (!startElement || !endElement) return null
 
-	const {duration = 1.6, ease = 'power2.out', onComplete} = options
+	const {duration = 1.5, ease = 'power2.out', onComplete} = options
 	const timeline = gsap.timeline({onComplete})
 
 	if (fromYears.start !== toYears.start) {
@@ -64,4 +64,56 @@ export const createYearAnimation = (
 	}
 
 	return timeline
+}
+
+export const animateFadeIn = (
+	element: HTMLElement,
+	options: {
+		duration?: number
+		delay?: number
+		ease?: string
+		from?: {opacity?: number; y?: number; x?: number}
+		to?: {opacity?: number; y?: number; x?: number}
+	} = {},
+): gsap.core.Tween => {
+	const {
+		duration = 0.3,
+		delay = 0,
+		ease = 'power2.out',
+		from = {opacity: 0, y: 20},
+		to = {opacity: 1, y: 0, x: 0},
+	} = options
+
+	gsap.set(element, from)
+
+	return gsap.to(element, {
+		...to,
+		duration,
+		delay,
+		ease,
+	})
+}
+
+export const animateFadeOut = (
+	element: HTMLElement,
+	options: {
+		duration?: number
+		ease?: string
+		to?: {opacity?: number; y?: number; x?: number}
+		onComplete?: () => void
+	} = {},
+): gsap.core.Tween => {
+	const {
+		duration = 0.3,
+		ease = 'power2.out',
+		to = {opacity: 0, y: -20},
+		onComplete,
+	} = options
+
+	return gsap.to(element, {
+		...to,
+		duration,
+		ease,
+		onComplete,
+	})
 }
