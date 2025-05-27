@@ -25,7 +25,6 @@ export const animateSlideChange = (
 		x: xOffset,
 	})
 
-	
 	timeline.to(element, {
 		opacity: 1,
 		x: 0,
@@ -68,7 +67,6 @@ export const animateCardAppear = (
 		from = {opacity: 0, y: 30, scale: 0.9},
 	} = options
 
-	
 	gsap.set(card, from)
 
 	return gsap.to(card, {
