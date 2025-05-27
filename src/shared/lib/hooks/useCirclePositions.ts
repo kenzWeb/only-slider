@@ -1,18 +1,6 @@
 import {useEffect, useState} from 'react'
 import {BREAKPOINTS, CIRCLE_CONFIG} from '../constants'
-
-interface CirclePosition {
-	x: number
-	y: number
-}
-
-interface UseCirclePositionsParams {
-	totalItems: number
-	radius?: number
-	centerX?: number
-	centerY?: number
-	startAngle?: number
-}
+import { CirclePosition, UseCirclePositionsParams } from '../../types/hooks'
 
 const getResponsiveConfig = () => {
 	const width = window.innerWidth

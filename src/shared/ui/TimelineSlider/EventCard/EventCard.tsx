@@ -1,11 +1,6 @@
 import React from 'react'
-import type {TimelineEvent} from '../../../types/timeline'
+import type {EventCardProps} from '../../../types/ui'
 import './EventCard.scss'
-
-interface EventCardProps {
-	event: TimelineEvent
-	className?: string
-}
 
 export const EventCard: React.FC<EventCardProps> = ({event, className}) => {
 	return (

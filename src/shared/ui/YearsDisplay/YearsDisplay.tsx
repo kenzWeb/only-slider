@@ -1,11 +1,6 @@
 import {forwardRef} from 'react'
+import type {YearsDisplayProps} from '../../types/ui'
 import './YearsDisplay.scss'
-
-interface YearsDisplayProps {
-	startYear: number
-	endYear: number
-	className?: string
-}
 
 export const YearsDisplay = forwardRef<HTMLDivElement, YearsDisplayProps>(
 	({startYear, endYear, className}, ref) => {

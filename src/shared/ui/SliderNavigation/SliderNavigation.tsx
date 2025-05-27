@@ -1,15 +1,6 @@
 import React, {useEffect} from 'react'
+import type {SliderNavigationProps} from '../../types/ui'
 import './SliderNavigation.scss'
-
-interface SliderNavigationProps {
-	activeIndex: number
-	totalItems: number
-	onPrevious: () => void
-	onNext: () => void
-	className?: string
-	enableKeyboardNavigation?: boolean
-	isMobile?: boolean
-}
 
 export const SliderNavigation: React.FC<SliderNavigationProps> = ({
 	activeIndex,

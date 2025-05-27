@@ -3,7 +3,7 @@ import type {Swiper as SwiperType} from 'swiper'
 import {Navigation} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {BREAKPOINTS, SLIDER_CONFIG} from '../../lib/constants'
-import type {TimelineEvent} from '../../types/timeline'
+import type {TimelineSliderProps} from '../../types/ui'
 import {EventCard} from './EventCard'
 import {SliderButton} from './SliderButton'
 import {SliderCounter} from './SliderCounter'
@@ -11,10 +11,6 @@ import './TimelineSlider.scss'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-
-interface TimelineSliderProps {
-	events: TimelineEvent[]
-}
 
 export const TimelineSlider: React.FC<TimelineSliderProps> = ({events}) => {
 	const swiperRef = useRef<SwiperType | null>(null)

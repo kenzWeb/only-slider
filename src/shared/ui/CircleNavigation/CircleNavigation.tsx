@@ -1,14 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import {useAnimations, useCirclePositions} from '../../lib/hooks'
+import type {CircleNavigationProps} from '../../types/ui'
 import './CircleNavigation.scss'
 import {CircleNavigationItem} from './CircleNavigationItem'
-
-interface CircleNavigationProps {
-	totalItems: number
-	activeIndex: number
-	onItemClick: (index: number) => void
-	labels: string[]
-}
 
 export const CircleNavigation: React.FC<CircleNavigationProps> = ({
 	totalItems,
@@ -23,7 +17,6 @@ export const CircleNavigation: React.FC<CircleNavigationProps> = ({
 	useEffect(() => {
 		if (!circleRef.current) return
 
-		
 		animateCircle(circleRef.current, activeIndex, totalItems)
 	}, [totalItems, activeIndex, animateCircle])
 

@@ -1,14 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
+import type {CircleNavigationControlsProps} from '../../../types/ui'
 import './CircleNavigationControls.scss'
-
-interface CircleNavigationControlsProps {
-	activeIndex: number
-	totalItems: number
-	onPrevious: () => void
-	onNext: () => void
-	className?: string
-	enableKeyboardNavigation?: boolean
-}
 
 export const CircleNavigationControls: React.FC<
 	CircleNavigationControlsProps

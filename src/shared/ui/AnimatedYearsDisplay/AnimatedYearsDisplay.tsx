@@ -1,12 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {useAnimations} from '../../lib/hooks'
+import type {AnimatedYearsDisplayProps} from '../../types/ui'
 import './AnimatedYearsDisplay.scss'
-
-interface AnimatedYearsDisplayProps {
-	startYear: number
-	endYear: number
-	className?: string
-}
 
 export const AnimatedYearsDisplay: React.FC<AnimatedYearsDisplayProps> = ({
 	startYear,
@@ -22,7 +17,6 @@ export const AnimatedYearsDisplay: React.FC<AnimatedYearsDisplayProps> = ({
 	useEffect(() => {
 		if (startYear === currentStartYear && endYear === currentEndYear) return
 
-		
 		animateYears(
 			startYearRef.current,
 			endYearRef.current,

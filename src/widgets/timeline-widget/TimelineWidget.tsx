@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTimelineNavigation} from '../../features/timeline-navigation'
 import {useBreakpoints} from '../../shared/lib/hooks'
-import type {TimelineData} from '../../shared/types/timeline'
+import type {TimelineWidgetProps} from '../../shared/types/ui'
 import {
 	AnimatedYearsDisplay,
 	CircleNavigation,
@@ -12,11 +12,6 @@ import {
 	YearsDisplay,
 } from '../../shared/ui'
 import './TimelineWidget.scss'
-
-interface TimelineWidgetProps {
-	data: TimelineData[]
-	className?: string
-}
 
 export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 	data,

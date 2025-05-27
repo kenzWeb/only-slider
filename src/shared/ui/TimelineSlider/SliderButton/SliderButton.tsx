@@ -1,13 +1,7 @@
 import {forwardRef, useRef} from 'react'
 import {useAnimations} from '../../../lib/hooks'
+import type {SliderButtonProps} from '../../../types/ui'
 import './SliderButton.scss'
-
-interface SliderButtonProps {
-	direction: 'prev' | 'next'
-	disabled?: boolean
-	onClick?: () => void
-	className?: string
-}
 
 export const SliderButton = forwardRef<HTMLButtonElement, SliderButtonProps>(
 	({direction, disabled = false, onClick, className}, ref) => {

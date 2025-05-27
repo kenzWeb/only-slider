@@ -1,10 +1,6 @@
 import {forwardRef} from 'react'
+import type {PeriodTitleProps} from '../../types/ui'
 import './PeriodTitle.scss'
-
-interface PeriodTitleProps {
-	title: string
-	className?: string
-}
 
 export const PeriodTitle = forwardRef<HTMLHeadingElement, PeriodTitleProps>(
 	({title, className}, ref) => {

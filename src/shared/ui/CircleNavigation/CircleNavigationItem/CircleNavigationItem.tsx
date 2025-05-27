@@ -1,15 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {useAnimations} from '../../../lib/hooks'
+import type {CircleNavigationItemProps} from '../../../types/ui'
 import './CircleNavigationItem.scss'
-
-interface CircleNavigationItemProps {
-	index: number
-	isActive: boolean
-	label: string
-	onClick: () => void
-	style?: React.CSSProperties
-	rotationOffset?: number
-}
 
 export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 	index,
@@ -26,7 +18,6 @@ export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 	useEffect(() => {
 		if (!itemRef.current) return
 
-		
 		animateItem(itemRef.current, rotationOffset)
 	}, [rotationOffset, animateItem])
 

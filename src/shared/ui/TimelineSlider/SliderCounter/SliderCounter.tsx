@@ -1,11 +1,6 @@
 import React from 'react'
+import type {SliderCounterProps} from '../../../types/ui'
 import './SliderCounter.scss'
-
-interface SliderCounterProps {
-	current: number
-	total: number
-	className?: string
-}
 
 export const SliderCounter: React.FC<SliderCounterProps> = ({
 	current,
