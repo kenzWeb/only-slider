@@ -75,7 +75,7 @@
 		}
 
 		@media (max-width: 900px) {
-			order: 2; // На планшетах счетчик справа от кнопок
+			order: 2;
 		}
 
 		.slider-navigation--mobile & {
@@ -107,7 +107,7 @@
 		@media (max-width: 900px) {
 			flex-direction: row;
 			gap: 12px;
-			order: 1; // На планшетах кнопки слева от счетчика
+			order: 1;
 		}
 
 		.slider-navigation--mobile & {
@@ -144,7 +144,6 @@
 			border: 1px solid rgba(66, 86, 122, 0.5);
 		}
 
-		
 		&:hover:not(:disabled) {
 			background: rgba(66, 86, 122, 0.1);
 			border-color: #42567a;
@@ -215,7 +214,7 @@
 			}
 
 			&--next {
-				transform: scaleX(-1); // Отражаем по горизонтали для кнопки "вперед"
+				transform: scaleX(-1);
 			}
 		}
 
