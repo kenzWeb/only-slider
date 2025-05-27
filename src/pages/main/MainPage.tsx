@@ -6,7 +6,9 @@ import './MainPage.scss'
 export const MainPage: React.FC = () => {
 	return (
 		<div className='main-page'>
-			<TimelineWidget data={mockTimelineData} />
+			<div className='main-page__container'>
+				<TimelineWidget data={mockTimelineData} />
+			</div>
 		</div>
 	)
 }

@@ -1,6 +1,48 @@
 .main-page {
 	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	background: #f4f5f9;
+	position: relative;
+
+	&__container {
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: 170px 80px 104px;
+		position: relative;
+
+		@media (max-width: 1024px) {
+			padding: 120px 40px 80px;
+		}
+
+		@media (max-width: 768px) {
+			padding: 60px 20px 50px;
+		}
+
+		@media (max-width: 480px) {
+			padding: 40px 20px;
+		}
+	}
+
+	&__title {
+		font-size: 56px;
+		font-weight: 700;
+		line-height: 1.2;
+		color: #42567a;
+		margin: 0 0 56px 0;
+		text-align: left;
+
+		@media (max-width: 1024px) {
+			font-size: 48px;
+			margin-bottom: 48px;
+		}
+
+		@media (max-width: 768px) {
+			font-size: 36px;
+			margin-bottom: 40px;
+		}
+
+		@media (max-width: 480px) {
+			font-size: 28px;
+			margin-bottom: 30px;
+		}
+	}
 }

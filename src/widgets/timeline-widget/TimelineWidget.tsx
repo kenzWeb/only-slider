@@ -6,7 +6,6 @@ import {
 	AnimatedYearsDisplay,
 	CircleNavigation,
 	CircleNavigationControls,
-	PeriodTitle,
 	SliderNavigation,
 	TimelineSlider,
 	YearsDisplay,
@@ -39,10 +38,7 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 		<div className={`timeline-widget ${className || ''}`}>
 			<div className='timeline-widget__container'>
 				<div className='timeline-widget__header'>
-					<PeriodTitle
-						title={activeData.title}
-						className='timeline-widget__title'
-					/>
+					<h1 className='timeline-widget__main-title'>{activeData.title}</h1>
 				</div>
 
 				<div className='timeline-widget__content'>
@@ -66,8 +62,11 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 							endYear={activeData.endYear}
 							className='timeline-widget__years'
 						/>
-					</div>{' '}
+					</div>
+
 					<div className='timeline-widget__circle-section'>
+						<div className='timeline-widget__circle-left'></div>
+
 						<div className='timeline-widget__circle-container'>
 							<CircleNavigation
 								totalItems={data.length}
@@ -94,6 +93,7 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 							/>
 						</div>
 					</div>
+
 					<div className='timeline-widget__slider'>
 						<TimelineSlider events={activeData.events} />
 					</div>
