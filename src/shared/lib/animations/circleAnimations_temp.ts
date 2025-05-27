@@ -18,3 +18,37 @@ export const animateCircleRotation = (
 		ease,
 	})
 }
+
+export const animateItemRotation = (
+	itemElement: HTMLElement,
+	rotationOffset: number,
+	options: {
+		duration?: number
+		ease?: string
+	} = {},
+): gsap.core.Tween => {
+	const {duration = 0.8, ease = 'power3.out'} = options
+
+	return gsap.to(itemElement, {
+		rotation: rotationOffset,
+		duration,
+		ease,
+	})
+}
+
+export const animateHover = (
+	element: HTMLElement,
+	isHovered: boolean,
+	options: {
+		duration?: number
+		ease?: string
+	} = {},
+): gsap.core.Tween => {
+	const {duration = 0.2, ease = 'power2.out'} = options
+
+	return gsap.to(element, {
+		scale: isHovered ? 1.1 : 1,
+		duration,
+		ease,
+	})
+}
