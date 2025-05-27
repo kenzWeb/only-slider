@@ -9,7 +9,7 @@ export const animateCircleRotation = (
 		ease?: string
 	} = {},
 ): gsap.core.Tween => {
-	const {duration = 0.8, ease = 'power3.out'} = options
+	const {duration = 1.4, ease = 'power2.out'} = options
 	const rotationAngle = (activeIndex * 360) / totalItems
 
 	return gsap.to(circleElement, {
@@ -27,7 +27,7 @@ export const animateItemRotation = (
 		ease?: string
 	} = {},
 ): gsap.core.Tween => {
-	const {duration = 0.8, ease = 'power3.out'} = options
+	const {duration = 1.4, ease = 'power2.out'} = options
 
 	return gsap.to(itemElement, {
 		rotation: rotationOffset,
