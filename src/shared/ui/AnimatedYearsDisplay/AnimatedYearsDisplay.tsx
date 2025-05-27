@@ -27,20 +27,19 @@ export const AnimatedYearsDisplay: React.FC<AnimatedYearsDisplayProps> = ({
 			endYearRef.current,
 			{start: currentStartYear, end: currentEndYear},
 			{start: startYear, end: endYear},
-			() => {
-				setCurrentStartYear(startYear)
-				setCurrentEndYear(endYear)
-			},
+			{
+				onComplete: () => {
+					setCurrentStartYear(startYear)
+					setCurrentEndYear(endYear)
+				}
+			}
 		)
-
-		return cleanup
 	}, [
 		startYear,
 		endYear,
 		currentStartYear,
 		currentEndYear,
 		animateYears,
-		cleanup,
 	])
 
 	return (
