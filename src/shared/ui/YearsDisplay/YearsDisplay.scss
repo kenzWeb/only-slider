@@ -1,0 +1,41 @@
+.years-display {
+	display: flex;
+	align-items: baseline;
+	gap: 20px;
+	justify-content: center;
+
+	@media (max-width: 768px) {
+		gap: 15px;
+	}
+
+	&__year {
+		font-size: 200px;
+		font-weight: 700;
+		line-height: 0.8;
+		letter-spacing: -0.02em;
+
+		@media (max-width: 1024px) {
+			font-size: 120px;
+		}
+
+		@media (max-width: 768px) {
+			font-size: 80px;
+		}
+
+		@media (max-width: 600px) {
+			font-size: 60px;
+		}
+
+		@media (max-width: 480px) {
+			font-size: 50px;
+		}
+
+		&--start {
+			color: #5d5fef;
+		}
+
+		&--end {
+			color: #ef5da8;
+		}
+	}
+}

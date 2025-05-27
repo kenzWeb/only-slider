@@ -1,0 +1,10 @@
+.app {
+	min-height: 100vh;
+	background: #f4f5f9;
+	font-family: 'PT Sans', Arial, sans-serif;
+}
+
+.app__container {
+	max-width: 1440px;
+	margin: 0 auto;
+}

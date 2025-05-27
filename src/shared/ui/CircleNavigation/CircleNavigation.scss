@@ -1,0 +1,40 @@
+.circle-navigation {
+	position: relative;
+	width: 530px;
+	height: 530px;
+	margin: 0 auto;
+	z-index: 30; // Увеличен z-index для навигации
+
+	@media (max-width: 1024px) {
+		width: 350px;
+		height: 350px;
+	}
+
+	@media (max-width: 900px) {
+		width: 300px;
+		height: 300px;
+	}
+
+	@media (max-width: 768px) {
+		width: 260px;
+		height: 260px;
+	}
+
+	@media (max-width: 600px) {
+		width: 220px;
+		height: 220px;
+	}
+
+	@media (max-width: 480px) {
+		width: 180px;
+		height: 180px;
+	}
+
+	&__circle {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		border: 1px solid rgba(66, 86, 122, 0.2);
+		border-radius: 50%;
+	}
+}

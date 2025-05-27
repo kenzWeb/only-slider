@@ -1,0 +1,71 @@
+.event-card {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 0;
+	background: transparent;
+	min-height: 120px;
+	justify-content: flex-start;
+
+	@media (max-width: 768px) {
+		min-height: 100px;
+	}
+
+	@media (max-width: 480px) {
+		min-height: 80px;
+	}
+
+	&__year {
+		font-size: 25px;
+		font-weight: 400;
+		color: #3877ee;
+		line-height: 1.2;
+
+		@media (max-width: 768px) {
+			font-size: 20px;
+		}
+
+		@media (max-width: 480px) {
+			font-size: 18px;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__title {
+		font-size: 20px;
+		font-weight: 700;
+		color: #42567a;
+		line-height: 1.2;
+		margin: 0;
+
+		@media (max-width: 768px) {
+			font-size: 18px;
+		}
+
+		@media (max-width: 480px) {
+			font-size: 16px;
+		}
+	}
+
+	&__description {
+		font-size: 16px;
+		font-weight: 400;
+		color: #42567a;
+		line-height: 1.4;
+		margin: 0;
+
+		@media (max-width: 768px) {
+			font-size: 14px;
+		}
+
+		@media (max-width: 480px) {
+			font-size: 13px;
+			line-height: 1.3;
+		}
+	}
+}

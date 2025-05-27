@@ -1,0 +1,1 @@
+export {SliderNavigation} from './SliderNavigation'

@@ -1,0 +1,38 @@
+.slider-button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid rgba(66, 86, 122, 0.2);
+	background: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	color: #42567a;
+
+	@media (max-width: 480px) {
+		width: 36px;
+		height: 36px;
+	}
+
+	&:hover:not(:disabled) {
+		border-color: #42567a;
+		background: #f4f5f9;
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
+	svg {
+		width: 8px;
+		height: 12px;
+
+		@media (max-width: 480px) {
+			width: 7px;
+			height: 10px;
+		}
+	}
+}
