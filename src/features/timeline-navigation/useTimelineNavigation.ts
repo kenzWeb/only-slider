@@ -1,7 +1,17 @@
 import {useCallback, useState} from 'react'
 import {ANIMATION_CONFIG} from '../../shared/lib/constants'
 
-export const useTimelineNavigation = (totalItems: number) => {
+export interface TimelineNavigationReturn {
+	activeIndex: number
+	isAnimating: boolean
+	navigateToIndex: (index: number) => boolean
+	navigateNext: () => boolean
+	navigatePrev: () => boolean
+}
+
+export const useTimelineNavigation = (
+	totalItems: number,
+): TimelineNavigationReturn => {
 	const [activeIndex, setActiveIndex] = useState(0)
 	const [isAnimating, setIsAnimating] = useState(false)
 

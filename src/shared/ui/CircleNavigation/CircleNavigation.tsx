@@ -20,10 +20,6 @@ export const CircleNavigation: React.FC<CircleNavigationProps> = ({
 		animateCircle(circleRef.current, activeIndex, totalItems)
 	}, [totalItems, activeIndex, animateCircle])
 
-	const handleItemClick = (index: number) => {
-		onItemClick(index)
-	}
-
 	return (
 		<div className='circle-navigation'>
 			<div className='circle-navigation__circle' ref={circleRef}>
@@ -33,7 +29,7 @@ export const CircleNavigation: React.FC<CircleNavigationProps> = ({
 						index={index}
 						isActive={index === activeIndex}
 						label={labels[index]}
-						onClick={() => handleItemClick(index)}
+						onClick={() => onItemClick(index)}
 						rotationOffset={(activeIndex * 360) / totalItems}
 						style={{
 							left: positions[index]?.x,

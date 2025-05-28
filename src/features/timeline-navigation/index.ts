@@ -1,2 +1,4 @@
-
-export {useTimelineNavigation} from './useTimelineNavigation'
+export {
+	useTimelineNavigation,
+	type TimelineNavigationReturn,
+} from './useTimelineNavigation'

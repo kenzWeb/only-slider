@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import {BREAKPOINTS} from '../constants'
 
 export const useMediaQuery = (query: string): boolean => {
 	const [matches, setMatches] = useState(false)
@@ -31,9 +32,13 @@ export const useMediaQuery = (query: string): boolean => {
 }
 
 export const useBreakpoints = () => {
-	const isMobile = useMediaQuery('(max-width: 768px)')
-	const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1024px)')
-	const isDesktop = useMediaQuery('(min-width: 1025px)')
+	const isMobile = useMediaQuery(`(max-width: ${BREAKPOINTS.TABLET}px)`)
+	const isTablet = useMediaQuery(
+		`(min-width: ${BREAKPOINTS.TABLET + 1}px) and (max-width: ${
+			BREAKPOINTS.DESKTOP
+		}px)`,
+	)
+	const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.DESKTOP + 1}px)`)
 	const isLargeDesktop = useMediaQuery('(min-width: 1200px)')
 
 	return {

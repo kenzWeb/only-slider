@@ -9,22 +9,7 @@ import {
 	animateButtonPress,
 	animateCardAppear,
 } from '../animations/sliderAnimations'
-
-const ANIMATION_PRESETS = {
-	FAST: 0.2,
-	NORMAL: 0.3,
-	SLOW: 0.6,
-	VERY_SLOW: 1.0,
-
-	EASE_OUT: 'power2.out',
-	EASE_IN_OUT: 'power2.inOut',
-	BOUNCE: 'back.out(1.7)',
-	ELASTIC: 'elastic.out(1, 0.5)',
-
-	HOVER_SCALE: 1.1,
-	ACTIVE_SCALE: 1.2,
-	PRESS_SCALE: 0.95,
-} as const
+import {ANIMATION_CONFIG} from '../constants'
 
 export const useAnimations = () => {
 	const timelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -40,8 +25,8 @@ export const useAnimations = () => {
 		(element: HTMLElement, activeIndex: number, totalItems: number) => {
 			cleanup()
 			return animateCircleRotation(element, activeIndex, totalItems, {
-				duration: 1.4,
-				ease: 'power2.out',
+				duration: ANIMATION_CONFIG.DURATIONS.CIRCLE,
+				ease: ANIMATION_CONFIG.EASING.OUT,
 			})
 		},
 		[cleanup],
@@ -50,8 +35,8 @@ export const useAnimations = () => {
 	const animateItem = useCallback(
 		(element: HTMLElement, rotationOffset: number) => {
 			return animateItemRotation(element, rotationOffset, {
-				duration: 1.4,
-				ease: 'power2.out',
+				duration: ANIMATION_CONFIG.DURATIONS.CIRCLE,
+				ease: ANIMATION_CONFIG.EASING.OUT,
 			})
 		},
 		[],
@@ -66,9 +51,11 @@ export const useAnimations = () => {
 			onComplete?: () => void,
 		) => {
 			cleanup()
-			
+
 			const isMobile = window.innerWidth <= 480
-			const duration = isMobile ? 1.0 : 1.6
+			const duration = isMobile
+				? ANIMATION_CONFIG.DURATIONS.MOBILE
+				: ANIMATION_CONFIG.DURATIONS.DESKTOP
 
 			const animation = createYearAnimation(
 				startElement,
@@ -77,7 +64,7 @@ export const useAnimations = () => {
 				toYears,
 				{
 					duration,
-					ease: 'power2.out',
+					ease: ANIMATION_CONFIG.EASING.OUT,
 					onComplete,
 				},
 			)
@@ -91,16 +78,16 @@ export const useAnimations = () => {
 
 	const animateCard = useCallback((card: HTMLElement, delay: number = 0) => {
 		return animateCardAppear(card, delay, {
-			duration: ANIMATION_PRESETS.NORMAL,
-			ease: ANIMATION_PRESETS.BOUNCE,
+			duration: ANIMATION_CONFIG.DURATIONS.NORMAL,
+			ease: ANIMATION_CONFIG.EASING.BOUNCE,
 		})
 	}, [])
 
 	const animateButton = useCallback((button: HTMLElement) => {
 		return animateButtonPress(button, {
-			duration: ANIMATION_PRESETS.FAST,
-			ease: ANIMATION_PRESETS.EASE_OUT,
-			scale: ANIMATION_PRESETS.PRESS_SCALE,
+			duration: ANIMATION_CONFIG.DURATIONS.FAST,
+			ease: ANIMATION_CONFIG.EASING.OUT,
+			scale: ANIMATION_CONFIG.SCALES.PRESS,
 		})
 	}, [])
 
@@ -117,9 +104,9 @@ export const useAnimations = () => {
 					opacity: 1,
 					y: 0,
 					scale: 1,
-					duration: ANIMATION_PRESETS.NORMAL,
+					duration: ANIMATION_CONFIG.DURATIONS.NORMAL,
 					delay,
-					ease: ANIMATION_PRESETS.BOUNCE,
+					ease: ANIMATION_CONFIG.EASING.BOUNCE,
 				},
 			)
 		},
@@ -132,8 +119,8 @@ export const useAnimations = () => {
 				opacity: 0,
 				y: -20,
 				scale: 0.9,
-				duration: ANIMATION_PRESETS.NORMAL,
-				ease: ANIMATION_PRESETS.EASE_OUT,
+				duration: ANIMATION_CONFIG.DURATIONS.NORMAL,
+				ease: ANIMATION_CONFIG.EASING.OUT,
 				onComplete,
 			})
 		},
@@ -146,12 +133,9 @@ export const useAnimations = () => {
 		animateYears,
 		animateCard,
 		animateButton,
-
 		animateAppear,
 		animateDisappear,
-
 		cleanup,
-
-		presets: ANIMATION_PRESETS,
+		config: ANIMATION_CONFIG,
 	}
 }

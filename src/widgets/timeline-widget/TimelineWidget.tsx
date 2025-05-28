@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useTimelineNavigation} from '../../features/timeline-navigation'
 import {useBreakpoints} from '../../shared/lib/hooks'
 import type {TimelineWidgetProps} from '../../shared/types/ui'
@@ -9,45 +9,24 @@ import {
 	SliderNavigation,
 	TimelineSlider,
 } from '../../shared/ui'
+import {MobileDotNavigation} from './components'
+import {useMobileAnimation} from './hooks'
 import './TimelineWidget.scss'
+import {createTimelineHandlers} from './utils'
 
 export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 	data,
 	className,
 }) => {
-	const {activeIndex, navigateToIndex, navigateNext, navigatePrev} =
-		useTimelineNavigation(data.length)
+	const navigation = useTimelineNavigation(data.length)
 	const {isMobile} = useBreakpoints()
-	const [isAnimating, setIsAnimating] = useState(false)
-	const [animationKey, setAnimationKey] = useState(0)
+	const {isAnimating, animationKey} = useMobileAnimation({
+		activeIndex: navigation.activeIndex,
+		isMobile,
+	})
+	const handlers = createTimelineHandlers(navigation)
 
-	
-	useEffect(() => {
-		if (isMobile) {
-			setIsAnimating(true)
-			setAnimationKey((prev) => prev + 1)
-
-			const timer = setTimeout(() => {
-				setIsAnimating(false)
-			}, 600) 
-
-			return () => clearTimeout(timer)
-		}
-	}, [activeIndex, isMobile])
-
-	const handlePeriodChange = (index: number) => {
-		navigateToIndex(index)
-	}
-
-	const handleNext = () => {
-		navigateNext()
-	}
-
-	const handlePrev = () => {
-		navigatePrev()
-	}
-
-	const activeData = data[activeIndex]
+	const activeData = data[navigation.activeIndex]
 
 	return (
 		<div className={`timeline-widget ${className || ''}`}>
@@ -71,8 +50,8 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 						<div className='timeline-widget__circle-container'>
 							<CircleNavigation
 								totalItems={data.length}
-								activeIndex={activeIndex}
-								onItemClick={handlePeriodChange}
+								activeIndex={navigation.activeIndex}
+								onItemClick={handlers.handlePeriodChange}
 								labels={data.map((item) => item.title)}
 							/>
 							<div className='timeline-widget__circle-center'>
@@ -86,10 +65,10 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 
 						<div className='timeline-widget__circle-pagination'>
 							<CircleNavigationControls
-								activeIndex={activeIndex}
+								activeIndex={navigation.activeIndex}
 								totalItems={data.length}
-								onPrevious={handlePrev}
-								onNext={handleNext}
+								onPrevious={handlers.handlePrev}
+								onNext={handlers.handleNext}
 								enableKeyboardNavigation={false}
 							/>
 						</div>
@@ -106,30 +85,21 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 					{isMobile && (
 						<SliderNavigation
 							key={`mobile-nav-${animationKey}`}
-							activeIndex={activeIndex}
+							activeIndex={navigation.activeIndex}
 							totalItems={data.length}
-							onPrevious={handlePrev}
-							onNext={handleNext}
+							onPrevious={handlers.handlePrev}
+							onNext={handlers.handleNext}
 							className={`timeline-widget__mobile-navigation ${
 								isAnimating ? 'animating' : ''
 							}`}
 							isMobile={true}
 						/>
 					)}
-					<div className='timeline-widget__mobile-nav'>
-						{data.map((_, index) => (
-							<button
-								key={index}
-								className={`timeline-widget__mobile-dot ${
-									index === activeIndex
-										? 'timeline-widget__mobile-dot--active'
-										: ''
-								}`}
-								onClick={() => handlePeriodChange(index)}
-								aria-label={`Перейти к периоду ${data[index].title}`}
-							/>
-						))}
-					</div>
+					<MobileDotNavigation
+						data={data}
+						activeIndex={navigation.activeIndex}
+						onPeriodChange={handlers.handlePeriodChange}
+					/>
 				</div>
 			</div>
 		</div>

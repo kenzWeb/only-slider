@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {useAnimations} from '../../../lib/hooks'
 import type {CircleNavigationItemProps} from '../../../types/ui'
 import './CircleNavigationItem.scss'
+import {createItemHandlers, getItemClassName} from './utils'
 
 export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 	index,
@@ -15,38 +16,25 @@ export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 	const itemRef = useRef<HTMLButtonElement>(null)
 	const {animateItem, animateButton} = useAnimations()
 
+	const handlers = createItemHandlers(
+		isActive,
+		setIsHovered,
+		animateButton,
+		onClick,
+	)
+
 	useEffect(() => {
 		if (!itemRef.current) return
-
 		animateItem(itemRef.current, rotationOffset)
 	}, [rotationOffset, animateItem])
-
-	const handleMouseEnter = () => {
-		if (!isActive) {
-			setIsHovered(true)
-		}
-	}
-
-	const handleMouseLeave = () => {
-		setIsHovered(false)
-	}
-
-	const handleClick = () => {
-		if (itemRef.current) {
-			animateButton(itemRef.current)
-		}
-		onClick()
-	}
 
 	return (
 		<button
 			ref={itemRef}
-			className={`circle-navigation-item ${
-				isActive ? 'circle-navigation-item--active' : ''
-			} ${isHovered ? 'circle-navigation-item--hovered' : ''}`}
-			onClick={handleClick}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
+			className={getItemClassName(isActive, isHovered)}
+			onClick={() => handlers.handleClick(itemRef.current)}
+			onMouseEnter={handlers.handleMouseEnter}
+			onMouseLeave={handlers.handleMouseLeave}
 			style={style}
 			aria-label={`Перейти к ${label}`}
 		>

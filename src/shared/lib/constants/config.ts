@@ -21,13 +21,6 @@ export const CIRCLE_CONFIG = {
 	CENTER_Y_MOBILE: 90,
 } as const
 
-export const ANIMATION_CONFIG = {
-	ROTATION_DURATION: 1,
-	ROTATION_EASE: 'power2.inOut',
-	CONTENT_CHANGE_DURATION: 0.3,
-	CONTENT_CHANGE_EASE: 'power2.out',
-} as const
-
 export const SLIDER_CONFIG = {
 	SPACE_BETWEEN: 80,
 	SPACE_BETWEEN_TABLET: 40,
