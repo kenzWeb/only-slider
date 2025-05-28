@@ -1,6 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React from 'react'
 import type {CircleNavigationControlsProps} from '../../../types/ui'
 import './CircleNavigationControls.scss'
+import {NavigationButton, SlideCounter} from './components'
+import {useNavigationControls} from './hooks'
+import {getControlsClassName} from './utils'
 
 export const CircleNavigationControls: React.FC<
 	CircleNavigationControlsProps
@@ -12,83 +15,33 @@ export const CircleNavigationControls: React.FC<
 	className,
 	enableKeyboardNavigation = true,
 }) => {
-	const currentSlide = activeIndex + 1
-	const [isUpdating, setIsUpdating] = useState(false)
-	const prevSlideRef = useRef(currentSlide)
-
-	useEffect(() => {
-		if (prevSlideRef.current !== currentSlide) {
-			setIsUpdating(true)
-			const timer = setTimeout(() => {
-				setIsUpdating(false)
-				prevSlideRef.current = currentSlide
-			}, 200)
-			return () => clearTimeout(timer)
-		}
-	}, [currentSlide])
-
-	useEffect(() => {
-		if (!enableKeyboardNavigation) return
-
-		const handleKeyDown = (event: KeyboardEvent) => {
-			switch (event.key) {
-				case 'ArrowLeft':
-					event.preventDefault()
-					onPrevious()
-					break
-				case 'ArrowRight':
-					event.preventDefault()
-					onNext()
-					break
-			}
-		}
-
-		document.addEventListener('keydown', handleKeyDown)
-		return () => {
-			document.removeEventListener('keydown', handleKeyDown)
-		}
-	}, [onPrevious, onNext, enableKeyboardNavigation])
+	const {currentSlide, isUpdating} = useNavigationControls(
+		activeIndex,
+		onPrevious,
+		onNext,
+		enableKeyboardNavigation,
+	)
 
 	return (
-		<div className={`circle-navigation-controls ${className || ''}`}>
-			<div className='circle-navigation-controls__counter'>
-				<span
-					className={`circle-navigation-controls__current ${
-						isUpdating ? 'updating' : ''
-					}`}
-				>
-					{currentSlide}
-				</span>
-				<span className='circle-navigation-controls__separator'>/</span>
-				<span className='circle-navigation-controls__total'>{totalItems}</span>
-			</div>
+		<div className={getControlsClassName(className)}>
+			<SlideCounter
+				current={currentSlide}
+				total={totalItems}
+				isUpdating={isUpdating}
+			/>
 
 			<div className='circle-navigation-controls__buttons'>
-				<button
-					className='circle-navigation-controls__button circle-navigation-controls__button--prev'
+				<NavigationButton
 					onClick={onPrevious}
-					disabled={activeIndex === 0}
+					direction='prev'
 					aria-label='Предыдущий период'
-				>
-					<img
-						src='/prevArrow.svg'
-						alt='Previous'
-						className='circle-navigation-controls__arrow'
-					/>
-				</button>
+				/>
 
-				<button
-					className='circle-navigation-controls__button circle-navigation-controls__button--next'
+				<NavigationButton
 					onClick={onNext}
-					disabled={activeIndex === totalItems - 1}
+					direction='next'
 					aria-label='Следующий период'
-				>
-					<img
-						src='/prevArrow.svg'
-						alt='Next'
-						className='circle-navigation-controls__arrow circle-navigation-controls__arrow--next'
-					/>
-				</button>
+				/>
 			</div>
 		</div>
 	)

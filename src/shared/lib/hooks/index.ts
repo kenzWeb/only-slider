@@ -1,3 +1,5 @@
 export {useAnimations} from './useAnimations'
+export {useCircleAnimations} from './useCircleAnimations'
 export {useCirclePositions} from './useCirclePositions'
 export {useBreakpoints, useMediaQuery} from './useMediaQuery'
+export * from './utils'

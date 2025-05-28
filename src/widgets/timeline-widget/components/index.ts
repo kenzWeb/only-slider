@@ -1,1 +1,6 @@
+export {CircleSection} from './CircleSection'
 export {MobileDotNavigation} from './MobileDotNavigation'
+export {MobileNavigationSection} from './MobileNavigationSection'
+export {MobileYearsSection} from './MobileYearsSection'
+export {SliderSection} from './SliderSection'
+export {WidgetHeader} from './WidgetHeader'

@@ -1,7 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {useAnimations} from '../../../lib/hooks'
+import React from 'react'
 import type {CircleNavigationItemProps} from '../../../types/ui'
 import './CircleNavigationItem.scss'
+import {ItemLabel, ItemNumber} from './components'
+import {useCircleNavigationItem} from './hooks'
 import {createItemHandlers, getItemClassName} from './utils'
 
 export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
@@ -12,9 +13,8 @@ export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 	style,
 	rotationOffset = 0,
 }) => {
-	const [isHovered, setIsHovered] = useState(false)
-	const itemRef = useRef<HTMLButtonElement>(null)
-	const {animateItem, animateButton} = useAnimations()
+	const {isHovered, setIsHovered, itemRef, animateButton} =
+		useCircleNavigationItem(rotationOffset)
 
 	const handlers = createItemHandlers(
 		isActive,
@@ -22,11 +22,6 @@ export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 		animateButton,
 		onClick,
 	)
-
-	useEffect(() => {
-		if (!itemRef.current) return
-		animateItem(itemRef.current, rotationOffset)
-	}, [rotationOffset, animateItem])
 
 	return (
 		<button
@@ -38,10 +33,8 @@ export const CircleNavigationItem: React.FC<CircleNavigationItemProps> = ({
 			style={style}
 			aria-label={`Перейти к ${label}`}
 		>
-			<span className='circle-navigation-item__number'>{index + 1}</span>
-			{isActive && (
-				<span className='circle-navigation-item__label'>{label}</span>
-			)}
+			<ItemNumber number={index + 1} />
+			<ItemLabel label={label} isVisible={isActive} />
 		</button>
 	)
 }
