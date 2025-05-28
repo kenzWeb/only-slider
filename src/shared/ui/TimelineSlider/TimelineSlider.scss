@@ -32,6 +32,11 @@
 			right: 20px;
 		}
 
+		@media (max-width: 600px) {
+			bottom: -45px;
+			right: 30px;
+		}
+
 		@media (max-width: 480px) {
 			bottom: -45px;
 			right: 15px;
@@ -54,6 +59,12 @@
 			bottom: -50px;
 			gap: 15px;
 			left: 20px;
+		}
+
+		@media (max-width: 600px) {
+			bottom: -45px;
+			gap: 12px;
+			left: 30px;
 		}
 
 		@media (max-width: 480px) {

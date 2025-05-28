@@ -21,6 +21,7 @@ export interface CircleNavigationItemProps {
 	onClick: () => void
 	style?: CSSProperties
 	rotationOffset?: number
+	isAnimating?: boolean
 }
 
 export interface CircleNavigationControlsProps {
