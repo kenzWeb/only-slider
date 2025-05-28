@@ -1,8 +1,8 @@
 .circle-navigation-controls {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 40px;
+	align-items: start;
+	gap: 5px;
 
 	@media (max-width: 768px) {
 		gap: 30px;
@@ -141,7 +141,7 @@
 			}
 
 			&--next {
-				transform: scaleX(-1); // Отражаем по горизонтали для кнопки "вперед"
+				transform: scaleX(-1);
 			}
 		}
 
@@ -160,10 +160,10 @@
 
 	&__counter {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		font-family: 'PT Sans', sans-serif;
-		font-size: 14px;
-		font-weight: 400;
+		font-size: 16px;
+		font-weight: 700;
 		color: #42567a;
 		min-width: 40px;
 		justify-content: center;
@@ -182,7 +182,7 @@
 	}
 
 	&__current {
-		font-weight: 400;
+		font-weight: 700;
 		transition: transform 0.2s ease;
 		display: inline-block;
 

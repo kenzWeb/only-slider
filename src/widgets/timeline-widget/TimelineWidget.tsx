@@ -38,7 +38,7 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 		<div className={`timeline-widget ${className || ''}`}>
 			<div className='timeline-widget__container'>
 				<div className='timeline-widget__header'>
-					<h1 className='timeline-widget__main-title'>{activeData.title}</h1>
+					<h1 className='timeline-widget__main-title'>Исторические даты</h1>
 				</div>
 
 				<div className='timeline-widget__content'>

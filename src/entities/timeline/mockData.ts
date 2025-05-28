@@ -3,7 +3,7 @@ import {TimelineData} from '../../shared/types/timeline'
 export const mockTimelineData: TimelineData[] = [
 	{
 		id: 1,
-		title: 'Наука',
+		title: 'w',
 		startYear: 2015,
 		endYear: 2022,
 		events: [
