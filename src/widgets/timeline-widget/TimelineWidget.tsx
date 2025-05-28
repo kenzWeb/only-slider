@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {useTimelineNavigation} from '../../features/timeline-navigation'
 import {useBreakpoints} from '../../shared/lib/hooks'
 import type {TimelineWidgetProps} from '../../shared/types/ui'
@@ -8,7 +8,6 @@ import {
 	CircleNavigationControls,
 	SliderNavigation,
 	TimelineSlider,
-	YearsDisplay,
 } from '../../shared/ui'
 import './TimelineWidget.scss'
 
@@ -19,6 +18,22 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 	const {activeIndex, navigateToIndex, navigateNext, navigatePrev} =
 		useTimelineNavigation(data.length)
 	const {isMobile} = useBreakpoints()
+	const [isAnimating, setIsAnimating] = useState(false)
+	const [animationKey, setAnimationKey] = useState(0)
+
+	
+	useEffect(() => {
+		if (isMobile) {
+			setIsAnimating(true)
+			setAnimationKey((prev) => prev + 1)
+
+			const timer = setTimeout(() => {
+				setIsAnimating(false)
+			}, 600) 
+
+			return () => clearTimeout(timer)
+		}
+	}, [activeIndex, isMobile])
 
 	const handlePeriodChange = (index: number) => {
 		navigateToIndex(index)
@@ -43,7 +58,7 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 
 				<div className='timeline-widget__content'>
 					<div className='timeline-widget__mobile-years'>
-						<YearsDisplay
+						<AnimatedYearsDisplay
 							startYear={activeData.startYear}
 							endYear={activeData.endYear}
 							className='timeline-widget__years'
@@ -80,16 +95,24 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 						</div>
 					</div>
 
-					<div className='timeline-widget__slider'>
+					<div
+						key={`slider-${animationKey}`}
+						className={`timeline-widget__slider ${
+							isAnimating ? 'animating' : ''
+						}`}
+					>
 						<TimelineSlider events={activeData.events} />
 					</div>
 					{isMobile && (
 						<SliderNavigation
+							key={`mobile-nav-${animationKey}`}
 							activeIndex={activeIndex}
 							totalItems={data.length}
 							onPrevious={handlePrev}
 							onNext={handleNext}
-							className='timeline-widget__mobile-navigation'
+							className={`timeline-widget__mobile-navigation ${
+								isAnimating ? 'animating' : ''
+							}`}
 							isMobile={true}
 						/>
 					)}

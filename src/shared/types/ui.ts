@@ -60,6 +60,7 @@ export interface TimelineSliderProps {
 export interface EventCardProps {
 	event: TimelineEvent
 	className?: string
+	index?: number
 }
 
 export interface SliderButtonProps {

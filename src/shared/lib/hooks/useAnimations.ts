@@ -66,13 +66,17 @@ export const useAnimations = () => {
 			onComplete?: () => void,
 		) => {
 			cleanup()
+			
+			const isMobile = window.innerWidth <= 480
+			const duration = isMobile ? 1.0 : 1.6
+
 			const animation = createYearAnimation(
 				startElement,
 				endElement,
 				fromYears,
 				toYears,
 				{
-					duration: 1.6,
+					duration,
 					ease: 'power2.out',
 					onComplete,
 				},

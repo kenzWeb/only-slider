@@ -12,7 +12,7 @@
 	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 	transform: translate(-50%, -50%);
 	overflow: visible;
-	z-index: 50; // Высокий z-index чтобы быть поверх годов
+	z-index: 50;
 
 	@media (max-width: 768px) {
 		width: 4px;
@@ -61,7 +61,6 @@
 		}
 	}
 
-	
 	&--hovered:not(&--active) {
 		width: 52px;
 		height: 52px;
@@ -156,14 +155,12 @@
 		}
 	}
 
-	
 	&--active &__number {
 		opacity: 1;
 		transform: scale(1) rotate(0deg);
 		color: #42567a;
 	}
 
-	
 	&:hover:not(&--active) &__number {
 		opacity: 1;
 		transform: scale(1) rotate(0deg);
@@ -171,7 +168,6 @@
 		text-shadow: 0 1px 4px rgba(93, 95, 239, 0.2);
 	}
 
-	
 	&--hovered:not(&--active) &__number {
 		opacity: 1;
 		transform: scale(1) rotate(0deg);
@@ -192,9 +188,5 @@
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 0.3s ease;
-
-		@media (max-width: 768px) {
-			display: none;
-		}
 	}
 }

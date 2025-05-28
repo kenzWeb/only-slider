@@ -98,7 +98,7 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({events}) => {
 			>
 				{events.map((event, index) => (
 					<SwiperSlide key={index} className='timeline-slider__slide'>
-						<EventCard event={event} />
+						<EventCard event={event} index={index} />
 					</SwiperSlide>
 				))}
 			</Swiper>
