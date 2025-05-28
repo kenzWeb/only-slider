@@ -81,39 +81,6 @@
 		@media (max-width: 480px) {
 			display: none;
 		}
-
-		// Горизонтальная линия через центр круга
-		&::before {
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 50%;
-			height: 1px;
-			background: rgba(66, 86, 122, 0.1);
-			transform: translateY(-50%);
-			z-index: 1;
-
-			@media (max-width: 480px) {
-				display: none;
-			}
-		}
-
-		&::after {
-			content: '';
-			position: absolute;
-			left: 50%;
-			top: 0;
-			bottom: 0;
-			width: 1px;
-			background: rgba(66, 86, 122, 0.1);
-			transform: translateX(-50%);
-			z-index: 1;
-
-			@media (max-width: 480px) {
-				display: none;
-			}
-		}
 	}
 
 	&__circle-left {

@@ -3,7 +3,7 @@
 	width: 530px;
 	height: 530px;
 	margin: 0 auto;
-	z-index: 30; // Увеличен z-index для навигации
+	z-index: 30;
 
 	@media (max-width: 1024px) {
 		width: 350px;
@@ -36,5 +36,48 @@
 		height: 100%;
 		border: 1px solid rgba(66, 86, 122, 0.2);
 		border-radius: 50%;
+		z-index: 2;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		height: 1px;
+		background: rgba(66, 86, 122, 0.1);
+		transform: translate(-50%, -50%);
+		z-index: 1;
+		width: calc(
+			100vw - 160px
+		);
+
+		@media (max-width: 1024px) {
+			width: calc(100vw - 80px);
+		}
+
+		@media (max-width: 768px) {
+			width: calc(100vw - 40px);
+		}
+
+		@media (max-width: 480px) {
+			display: none;
+		}
+	}
+
+	&::after {
+		content: '';
+		position: fixed;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: rgba(66, 86, 122, 0.1);
+		transform: translateX(-50%);
+		z-index: 1;
+
+		@media (max-width: 480px) {
+			display: none;
+		}
 	}
 }
