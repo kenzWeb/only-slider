@@ -41,6 +41,7 @@ export const CircleNavigationControls: React.FC<
 					onClick={onNext}
 					direction='next'
 					aria-label='Следующий период'
+					style={{transform: 'rotate(180deg)'}}
 				/>
 			</div>
 		</div>
