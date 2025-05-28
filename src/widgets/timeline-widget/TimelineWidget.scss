@@ -10,12 +10,18 @@
 		margin-bottom: 56px;
 		margin-left: 80px;
 
+		@media (max-width: 1024px) {
+			margin-left: 40px;
+		}
+
 		@media (max-width: 768px) {
 			margin-bottom: 40px;
+			margin-left: 20px;
 		}
 
 		@media (max-width: 480px) {
 			margin-bottom: 30px;
+			margin-left: 15px;
 		}
 	}
 
@@ -220,13 +226,12 @@
 
 	&__circle-pagination {
 		position: absolute;
-		left: 0;
+		left: 80px;
 		bottom: -60px;
 		z-index: 25;
 
-		@media (max-width: 1200px) {
-			left: 20px;
-			bottom: -50px;
+		@media (max-width: 1024px) {
+			left: 40px;
 		}
 
 		@media (max-width: 900px) {
@@ -237,8 +242,15 @@
 			justify-content: center;
 		}
 
+		@media (max-width: 768px) {
+			left: 20px;
+			bottom: -50px;
+		}
+
 		@media (max-width: 480px) {
 			display: none;
+			left: 15px;
+			bottom: -45px;
 		}
 	}
 }

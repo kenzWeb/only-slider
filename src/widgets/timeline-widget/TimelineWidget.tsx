@@ -42,20 +42,6 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 				</div>
 
 				<div className='timeline-widget__content'>
-					<div className='timeline-widget__mobile-nav'>
-						{data.map((_, index) => (
-							<button
-								key={index}
-								className={`timeline-widget__mobile-dot ${
-									index === activeIndex
-										? 'timeline-widget__mobile-dot--active'
-										: ''
-								}`}
-								onClick={() => handlePeriodChange(index)}
-								aria-label={`Перейти к периоду ${data[index].title}`}
-							/>
-						))}
-					</div>
 					<div className='timeline-widget__mobile-years'>
 						<YearsDisplay
 							startYear={activeData.startYear}
@@ -107,6 +93,20 @@ export const TimelineWidget: React.FC<TimelineWidgetProps> = ({
 							isMobile={true}
 						/>
 					)}
+					<div className='timeline-widget__mobile-nav'>
+						{data.map((_, index) => (
+							<button
+								key={index}
+								className={`timeline-widget__mobile-dot ${
+									index === activeIndex
+										? 'timeline-widget__mobile-dot--active'
+										: ''
+								}`}
+								onClick={() => handlePeriodChange(index)}
+								aria-label={`Перейти к периоду ${data[index].title}`}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 		</div>
